@@ -143,7 +143,8 @@
     .hero a {
       background: #00ff7f;
       color: #000;
-      padding: 10px 25px;
+      /* Збільшуємо кнопку на ~20% */
+      padding: 12px 30px; /* Було 10px 25px */
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
@@ -244,7 +245,7 @@
     /*       ПРО НАС (СТРУКТУРА)   */
     /* ============================ */
     .about-section {
-      background: #222; /* Контрастний фон */
+      background: #222;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       max-width: 1000px;
@@ -290,7 +291,8 @@
     .bottom-cta button {
       background: #00ff7f;
       color: #000;
-      padding: 15px 30px;
+      /* Збільшуємо кнопку на ~20% */
+      padding: 18px 36px; /* Було 15px 30px */
       font-size: 1em;
       font-weight: bold;
       border: none;
@@ -301,6 +303,59 @@
     .bottom-cta button:hover {
       background: #00cc66;
       transform: scale(1.05);
+    }
+
+    /* ============================ */
+    /*     Слайдер відгуків        */
+    /* ============================ */
+    .reviews-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      text-align: center;
+      position: relative;
+    }
+    .reviews-section h2 {
+      color: #00ff7f;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .slider-container {
+      overflow: hidden;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+    }
+    .slide {
+      min-width: 100%;
+      /* За бажанням можна додати відступи, фон тощо */
+    }
+    .slide img {
+      width: 100%;
+      display: block;
+    }
+    .slider-controls {
+      margin-top: 10px;
+    }
+    .slider-controls button {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .slider-controls button:hover {
+      background: #00ff7f;
+      color: #000;
     }
 
     /* ============================ */
@@ -492,7 +547,7 @@
     </div>
   </section>
 
-  <!-- Про нас (оновлений блок) -->
+  <!-- Про нас -->
   <section id="about" class="about-section">
     <h2>Про нас</h2>
     <div class="about-content">
@@ -512,6 +567,31 @@
   <div class="bottom-cta">
     <button onclick="openModal()">Залишити заявку</button>
   </div>
+
+  <!-- Новий блок із відгуками (слайдер) -->
+  <section class="reviews-section" id="reviews">
+    <h2>Відгуки клієнтів</h2>
+    <div class="slider-container">
+      <div class="slider">
+        <!-- Слайд 1 -->
+        <div class="slide">
+          <img src="images/img2.jpg" alt="Відгук 1">
+        </div>
+        <!-- Слайд 2 -->
+        <div class="slide">
+          <img src="images/img1.jpg" alt="Відгук 2">
+        </div>
+        <!-- Слайд 3 -->
+        <div class="slide">
+          <img src="images/img3.jpg" alt="Відгук 3">
+        </div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="prev-btn">◀</button>
+      <button class="next-btn">▶</button>
+    </div>
+  </section>
 
   <!-- Карта Google Maps -->
   <section id="map">
@@ -571,6 +651,28 @@
         closeModal();
       }
     }
+
+    // Слайдер відгуків
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      // Зсув (translateX) на відсоток ширини кожного слайда
+      slider.style.transform = `translateX(${-index * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+      showSlide(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    });
   </script>
 </body>
 </html>
