@@ -26,7 +26,7 @@
       background: #111;
       padding: 20px;
       text-align: center;
-      /* ВИДАЛЕНО position: sticky; */
+      /* Прибрано position: sticky, щоб шапка прокручувалася */
     }
     header h1 {
       margin-bottom: 10px;
@@ -76,11 +76,9 @@
       overflow: hidden;
       background-size: cover;
       background-position: center;
-      /* Спрощена анімація слайдшоу + вендорні префікси */
       -webkit-animation: fadeSlideshow 25s infinite ease-in-out;
               animation: fadeSlideshow 25s infinite ease-in-out;
     }
-    /* Вендорні префікси + спрощені ключові кадри */
     @-webkit-keyframes fadeSlideshow {
       0%   { background-image: url('images/img3.jpg'); }
       20%  { background-image: url('images/img3.jpg'); }
@@ -104,7 +102,6 @@
       100% { background-image: url('images/img5.jpg'); }
     }
 
-    /* Напівпрозора підкладка для кращої читабельності тексту */
     .hero::before {
       content: "";
       position: absolute;
@@ -122,7 +119,6 @@
       font-size: 2.5em;
       margin-bottom: 15px;
       color: #00ff7f;
-      /* Світіння тексту з префіксами */
       -webkit-animation: textGlow 2s infinite alternate;
               animation: textGlow 2s infinite alternate;
     }
@@ -146,7 +142,7 @@
       -webkit-transform: scale(1.05);
               transform: scale(1.05);
     }
-    /* Анімація "світіння" з вендорними префіксами */
+
     @-webkit-keyframes textGlow {
       0%   { text-shadow: 0 0 5px #00ff7f; }
       100% { text-shadow: 0 0 20px #00ff7f; }
@@ -246,6 +242,55 @@
     }
 
     /* ============================ */
+    /*      Кнопка внизу сторінки  */
+    /* ============================ */
+    .bottom-cta {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .bottom-cta button {
+      background: #00ff7f;
+      color: #000;
+      padding: 15px 30px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .bottom-cta button:hover {
+      background: #00cc66;
+      transform: scale(1.05);
+    }
+
+    /* ============================ */
+    /*          Блок карти         */
+    /* ============================ */
+    #map {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-top: 40px;
+      text-align: center;
+    }
+    #map h2 {
+      margin-bottom: 20px;
+    }
+    .map-container {
+      width: 100%;
+      height: 450px;
+      border: none;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ============================ */
     /*           Футер             */
     /* ============================ */
     footer {
@@ -281,7 +326,6 @@
       border-radius: 8px;
       position: relative;
       box-shadow: 0 0 15px rgba(0,0,0,0.8);
-      /* Вендорні префікси для анімації появи */
       -webkit-animation: modalFadeIn 0.5s;
               animation: modalFadeIn 0.5s;
     }
@@ -294,7 +338,6 @@
       to   { opacity: 1; -webkit-transform: translateY(0);      transform: translateY(0);      }
     }
 
-    /* Кнопка "закрити" (хрестик) */
     .close-btn {
       position: absolute;
       top: 10px;
@@ -306,8 +349,6 @@
     .close-btn:hover {
       color: #00ff7f;
     }
-
-    /* Стилі для контактної інформації та форми всередині модалки */
     .modal-content h2 {
       margin-bottom: 15px;
       font-size: 1.8em;
@@ -353,7 +394,6 @@
     /* ======================= */
     /*   ДОДАТКОВІ BREAKPOINTS */
     /* ======================= */
-    /* Для екранів до 768px (мобільні пристрої) */
     @media (max-width: 768px) {
       header h1 {
         font-size: 1.8em;
@@ -379,15 +419,13 @@
         max-width: 90%;
       }
       .gallery {
-        grid-template-columns: 1fr 1fr; /* 2 колонки для смартфонів */
+        grid-template-columns: 1fr 1fr;
       }
       .modal-content {
         width: 90%;
         margin-top: 30%;
       }
     }
-
-    /* Для екранів від 768px до 1200px (планшети, невеликі ноутбуки) */
     @media (min-width: 769px) and (max-width: 1199px) {
       .hero h2 {
         font-size: 2.2em;
@@ -399,14 +437,12 @@
         flex-wrap: wrap;
       }
       .service {
-        flex: 0 1 calc(50% - 40px); /* 2 елементи в ряд */
+        flex: 0 1 calc(50% - 40px);
       }
       .gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       }
     }
-
-    /* Для екранів від 1200px (великі десктопи) */
     @media (min-width: 1200px) {
       .hero {
         height: 60vh;
@@ -428,7 +464,7 @@
 </head>
 <body>
 
-  <!-- Шапка сайту (прокручується разом зі сторінкою) -->
+  <!-- Шапка сайту -->
   <header>
     <h1>Ремонт консолей</h1>
     <nav>
@@ -501,6 +537,25 @@
       Наші клієнти цінують нас за професіоналізм, оперативність та індивідуальний підхід. 
       Ми використовуємо тільки якісні запчастини та даємо гарантію на всі види робіт.
     </p>
+  </section>
+
+  <!-- Кнопка внизу сторінки -->
+  <div class="bottom-cta">
+    <button onclick="openModal()">Залишити заявку</button>
+  </div>
+
+  <!-- Карта Google Maps -->
+  <section id="map">
+    <h2>Ми знаходимось тут</h2>
+    <div class="map-container">
+      <!-- Приклад вбудованої карти Google з адресою Одеса, вул. Героїв прикордонників 4 -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.8590989836254!2d30.73463231558253!3d46.4683922791265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632ea7fd8d6c9%3A0xf01da03b23c0b251!2z0J7Qu9C40L3RgtGMLCDQnNC-0YHQutC-0LHQvtCz0LDQvdC40Y8sIDQsINCR0LDQstC10L3RgtGA0LDQstC-0LvQuNC90L7Qs9C-LCA4NjAwMg!5e0!3m2!1suk!2sua!4v1677183082272!5m2!1suk!2sua" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </section>
 
   <!-- Модальне вікно (Контактна форма + Контакти) -->
