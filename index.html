@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ремонт ігрових консолей</title>
+
+  <!-- Попереднє завантаження зображень Hero -->
+  <link rel="preload" href="images/img1.jpg" as="image">
+  <link rel="preload" href="images/img2.jpg" as="image">
+  <link rel="preload" href="images/img3.jpg" as="image">
+  <link rel="preload" href="images/img4.jpg" as="image">
+  <link rel="preload" href="images/img5.jpg" as="image">
+
   <style>
     /* Скидання базових стилів */
     * {
@@ -17,6 +25,8 @@
       background: linear-gradient(135deg, #1f1f1f 0%, #000000 100%);
       color: #fff;
       overflow-x: hidden;
+      /* Плавна прокрутка (не впливає на продуктивність, але виглядає приємніше) */
+      scroll-behavior: smooth;
     }
 
     /* ============================ */
@@ -26,7 +36,7 @@
       background: #111;
       padding: 20px;
       text-align: center;
-      /* Видалено position: sticky; щоб шапка прокручувалась */
+      /* Прибрано position: sticky; щоб шапка прокручувалась разом зі сторінкою */
     }
     header h1 {
       margin-bottom: 10px;
@@ -76,9 +86,12 @@
       overflow: hidden;
       background-size: cover;
       background-position: center;
-      /* Спрощена анімація з 5 зображеннями */
+      /* Анімація слайдшоу */
       -webkit-animation: fadeSlideshow 25s infinite ease-in-out;
               animation: fadeSlideshow 25s infinite ease-in-out;
+      /* Покращення рендеру */
+      will-change: background-image;
+      transform: translateZ(0);
     }
     /* Ключові кадри з 5 різними зображеннями */
     @-webkit-keyframes fadeSlideshow {
@@ -127,14 +140,11 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
-      transition: background 0.3s, -webkit-transform 0.3s;
       transition: background 0.3s, transform 0.3s;
-      transition: background 0.3s, transform 0.3s, -webkit-transform 0.3s;
     }
     .hero a:hover {
       background: #00cc66;
-      -webkit-transform: scale(1.05);
-              transform: scale(1.05);
+      transform: scale(1.05);
     }
 
     /* Світіння тексту */
@@ -179,13 +189,11 @@
       flex: 0 1 300px;
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      transition: -webkit-transform 0.3s;
       transition: transform 0.3s;
-      transition: transform 0.3s, -webkit-transform 0.3s;
+      will-change: transform;
     }
     .service:hover {
-      -webkit-transform: translateY(-5px);
-              transform: translateY(-5px);
+      transform: translateY(-5px);
     }
     .service h3 {
       margin-bottom: 15px;
@@ -201,6 +209,8 @@
       width: 100%;
       border-radius: 8px;
       margin-bottom: 10px;
+      /* Легке покращення відтворення */
+      will-change: transform;
     }
 
     /* ============================ */
@@ -218,13 +228,14 @@
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      transition: -webkit-transform 0.3s;
       transition: transform 0.3s;
-      transition: transform 0.3s, -webkit-transform 0.3s;
+      will-change: transform;
+      /* Ледаче завантаження */
+      loading: lazy;
+      decoding: async;
     }
     .gallery img:hover {
-      -webkit-transform: scale(1.05);
-              transform: scale(1.05);
+      transform: scale(1.05);
     }
 
     /* ============================ */
@@ -279,11 +290,14 @@
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      /* При бажанні можна не відображати карту, поки не прокрутять до неї (lazy-iframe через JS) */
     }
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: 0;
+      /* Lazy loading для карти */
+      loading: lazy;
     }
 
     /* ============================ */
@@ -377,14 +391,11 @@
       border-radius: 5px;
       font-size: 1em;
       font-weight: bold;
-      transition: background 0.3s, -webkit-transform 0.3s;
       transition: background 0.3s, transform 0.3s;
-      transition: background 0.3s, transform 0.3s, -webkit-transform 0.3s;
     }
     .modal-content form button:hover {
       background: #00cc66;
-      -webkit-transform: scale(1.05);
-              transform: scale(1.05);
+      transform: scale(1.05);
     }
 
     /* ======================= */
@@ -416,7 +427,6 @@
       .service {
         max-width: 90%;
       }
-      /* Для мобільних 2 колонки в галереї - вже встановлено */
       .modal-content {
         width: 90%;
         margin-top: 30%;
@@ -493,7 +503,6 @@
     <div class="hero-content">
       <h2>Професійний ремонт ігрових консолей</h2>
       <p>Швидко, якісно та з гарантією!</p>
-      <!-- Кнопка знову ж таки може відкривати форму -->
       <a href="javascript:void(0)" onclick="openModal()">Залишити заявку</a>
     </div>
   </section>
@@ -503,17 +512,17 @@
     <h2>Наші послуги</h2>
     <div class="services">
       <div class="service">
-        <img src="images/img9.jpg" alt="Ремонт PlayStation">
+        <img src="images/img9.jpg" alt="Ремонт PlayStation" loading="lazy" decoding="async">
         <h3>Ремонт PlayStation</h3>
         <p>Виконуємо чистку, заміну термопасти 700грн — Ремонт геймпадів та інших компонентів PlayStation від 250грн.</p>
       </div>
       <div class="service">
-        <img src="images/img11.jpg" alt="Ремонт Xbox">
+        <img src="images/img11.jpg" alt="Ремонт Xbox" loading="lazy" decoding="async">
         <h3>Ремонт Xbox</h3>
         <p>Виконуємо чистку, заміну термопасти 900грн — Ремонт геймпадів та інших компонентів від 250грн для Xbox.</p>
       </div>
       <div class="service">
-        <img src="images/img10.jpg" alt="Ремонт Nintendo">
+        <img src="images/img10.jpg" alt="Ремонт Nintendo" loading="lazy" decoding="async">
         <h3>Ремонт Nintendo</h3>
         <p>Якісний ремонт консолей Nintendo, включаючи заміну елементів живлення та дисплеїв від 400грн.</p>
       </div>
@@ -524,11 +533,12 @@
   <section id="gallery">
     <h2>Галерея</h2>
     <div class="gallery">
-      <img src="images/img1.jpg" alt="Приклад ремонту консолі 1">
-      <img src="images/img2.jpg" alt="Приклад ремонту консолі 2">
-      <img src="images/img3.jpg" alt="Приклад ремонту консолі 3">
-      <img src="images/img4.jpg" alt="Приклад ремонту консолі 4">
-      <img src="images/img5.jpg" alt="Приклад ремонту консолі 5">
+      <!-- Ледаче завантаження кожного зображення -->
+      <img src="images/img1.jpg" alt="Приклад ремонту 1" loading="lazy" decoding="async">
+      <img src="images/img2.jpg" alt="Приклад ремонту 2" loading="lazy" decoding="async">
+      <img src="images/img3.jpg" alt="Приклад ремонту 3" loading="lazy" decoding="async">
+      <img src="images/img4.jpg" alt="Приклад ремонту 4" loading="lazy" decoding="async">
+      <img src="images/img5.jpg" alt="Приклад ремонту 5" loading="lazy" decoding="async">
     </div>
   </section>
 
@@ -547,15 +557,13 @@
     <button onclick="openModal()">Залишити заявку</button>
   </div>
 
-  <!-- Карта Google Maps -->
+  <!-- Карта Google Maps (з lazy) -->
   <section id="map">
     <h2>Ми знаходимось тут</h2>
     <div class="map-container">
-      <!-- Приклад вбудованої карти Google з адресою Одеса, вул. Героїв прикордонників 4 -->
       <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2749.6490374031932!2d30.7331971!3d46.4358355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633bd5e81ae87%3A0xb56e24d1a633003a!2z0YPQuy4g0JPQtdGA0L7QtdCyLdCf0L7Qs9GA0LDQvdC40YfQvdC40LrQvtCyLCA0LCDQntC00LXRgdGB0LAsINCe0LTQtdGB0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDY1MDAw!5e0!3m2!1sru!2sua!4v1739978428955!5m2!1sru!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
-        allowfullscreen="" 
-        loading="lazy" 
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2749.6490374031932!2d30.7331971!3d46.4358355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633bd5e81ae87%3A0xb56e24d1a633003a!2z0YPQuy4g0JPQtdGA0L7QtdCyLdCf0L7Qs9GA0LDQvdC40YfQvdC40LrQvtCyLCA0LCDQntC00LXRgdGB0LAsINCe0LTQtdGB0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDY1MDAw!5e0!3m2!1sru!2sua!4v1739978428955!5m2!1sru!2sua"
+        loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -587,23 +595,20 @@
     <p>&copy; 2025 Ремонт ігрових консолей. Всі права захищені.</p>
   </footer>
 
-  <!-- JavaScript для відкриття/закриття модального вікна -->
+  <!-- JavaScript (краще підключити defer або в кінці body) -->
   <script>
     const modal = document.getElementById("contactModal");
 
-    // Функція відкриття модального вікна
     function openModal() {
       modal.style.display = "block";
     }
 
-    // Функція закриття модального вікна
     function closeModal() {
       modal.style.display = "none";
     }
 
-    // Закриття при кліку поза формою
     window.onclick = function(event) {
-      if (event.target == modal) {
+      if (event.target === modal) {
         closeModal();
       }
     }
