@@ -140,11 +140,11 @@
       font-size: 1.2em;
       margin-bottom: 20px;
     }
+    /* Збільшуємо кнопку на ~30% від оригіналу (було 10px 25px, стало ~13px 33px) */
     .hero a {
       background: #00ff7f;
       color: #000;
-      /* Збільшуємо кнопку на ~20% */
-      padding: 12px 30px; /* Було 10px 25px */
+      padding: 13px 33px; 
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
@@ -282,17 +282,20 @@
     }
 
     /* ============================ */
-    /*      Кнопка внизу сторінки  */
+    /*      Кнопка (фіксована)     */
     /* ============================ */
     .bottom-cta {
-      text-align: center;
-      margin-top: 20px;
+      /* Прибрано звичайний потік */
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999; /* над іншими елементами */
     }
+    /* Збільшена на 30% від початкових 15px 30px => ~19.5px 39px, округлимо */
     .bottom-cta button {
       background: #00ff7f;
       color: #000;
-      /* Збільшуємо кнопку на ~20% */
-      padding: 18px 36px; /* Було 15px 30px */
+      padding: 20px 40px;
       font-size: 1em;
       font-weight: bold;
       border: none;
@@ -310,9 +313,10 @@
     /* ============================ */
     .reviews-section {
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 32px auto; /* зменшили відступи ~20% */
       text-align: center;
       position: relative;
+      padding: 0 20px;
     }
     .reviews-section h2 {
       color: #00ff7f;
@@ -334,28 +338,11 @@
     }
     .slide {
       min-width: 100%;
-      /* За бажанням можна додати відступи, фон тощо */
     }
     .slide img {
       width: 100%;
       display: block;
-    }
-    .slider-controls {
-      margin-top: 10px;
-    }
-    .slider-controls button {
-      background: #333;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .slider-controls button:hover {
-      background: #00ff7f;
-      color: #000;
+      cursor: pointer; /* щоб можна було натискати на фото */
     }
 
     /* ============================ */
@@ -481,6 +468,14 @@
       background: #00cc66;
       transform: scale(1.05);
     }
+
+    /* Адаптив для плаваючої кнопки */
+    @media (max-width: 768px) {
+      .bottom-cta {
+        bottom: 10px;
+        right: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -563,33 +558,29 @@
     </div>
   </section>
 
-  <!-- Кнопка внизу сторінки -->
+  <!-- Плаваюча кнопка (замість нижньої) -->
   <div class="bottom-cta">
     <button onclick="openModal()">Залишити заявку</button>
   </div>
 
-  <!-- Новий блок із відгуками (слайдер) -->
+  <!-- Новий блок із відгуками (автослайд + натискання на фото) -->
   <section class="reviews-section" id="reviews">
     <h2>Відгуки клієнтів</h2>
     <div class="slider-container">
       <div class="slider">
         <!-- Слайд 1 -->
         <div class="slide">
-          <img src="images/img2.jpg" alt="Відгук 1">
+          <img src="images/img1.jpg" alt="Відгук 1">
         </div>
         <!-- Слайд 2 -->
         <div class="slide">
-          <img src="images/img1.jpg" alt="Відгук 2">
+          <img src="images/img2.jpg" alt="Відгук 2">
         </div>
         <!-- Слайд 3 -->
         <div class="slide">
           <img src="images/img3.jpg" alt="Відгук 3">
         </div>
       </div>
-    </div>
-    <div class="slider-controls">
-      <button class="prev-btn">◀</button>
-      <button class="next-btn">▶</button>
     </div>
   </section>
 
@@ -636,42 +627,49 @@
 
   <!-- JavaScript -->
   <script>
+    /* Модальне вікно */
     const modal = document.getElementById("contactModal");
-
     function openModal() {
       modal.style.display = "block";
     }
-
     function closeModal() {
       modal.style.display = "none";
     }
-
+    // Закриття форми при натисканні у пусту область
     window.onclick = function(event) {
       if (event.target === modal) {
         closeModal();
       }
     }
 
-    // Слайдер відгуків
+    /* Слайдер відгуків */
     const slider = document.querySelector('.slider');
     const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
     let currentIndex = 0;
 
+    // Функція показу поточного слайду
     function showSlide(index) {
-      // Зсув (translateX) на відсоток ширини кожного слайда
       slider.style.transform = `translateX(${-index * 100}%)`;
     }
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
-      showSlide(currentIndex);
-    });
-
-    nextBtn.addEventListener('click', () => {
+    // Перехід до наступного слайду
+    function nextSlide() {
       currentIndex = (currentIndex + 1) % slides.length;
       showSlide(currentIndex);
+    }
+
+    // Автопрокрутка (кожні 3 секунди)
+    let autoSlide = setInterval(nextSlide, 3000);
+
+    // При кліку на слайд – перехід до наступного
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        // Скидаємо автопрокрутку, щоб не було конфлікту
+        clearInterval(autoSlide);
+        nextSlide();
+        // Заново запускаємо автопрокрутку
+        autoSlide = setInterval(nextSlide, 3000);
+      });
     });
   </script>
 </body>
