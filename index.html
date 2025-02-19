@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- SEO-метатеги -->
   <meta name="description" content="Професійний ремонт ігрових консолей (PlayStation, Xbox, Nintendo) в Одесі. Швидко, якісно, з гарантією." />
   <meta name="keywords" content="ремонт консолей, ремонт PlayStation, ремонт Xbox, ремонт Nintendo, Одеса, чистка, заміна термопасти" />
   <title>Ремонт ігрових консолей в Одесі | Швидко та Якісно</title>
@@ -38,7 +40,6 @@
       background: #111;
       padding: 20px;
       text-align: center;
-      /* Прибрано position: sticky; щоб шапка прокручувалась разом зі сторінкою */
     }
     header h1 {
       margin-bottom: 10px;
@@ -211,7 +212,6 @@
       width: 100%;
       border-radius: 8px;
       margin-bottom: 10px;
-      /* Легке покращення відтворення */
       will-change: transform;
     }
 
@@ -223,8 +223,7 @@
       gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
-      /* Базові налаштування (мобільні, планшети) */
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); /* Базові налаштування для мобільних */
     }
     .gallery img {
       width: 100%;
@@ -292,14 +291,12 @@
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      /* При бажанні можна не відображати карту, поки не прокрутять до неї (lazy-iframe через JS) */
     }
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: 0;
-      /* Lazy loading для карти */
-      loading: lazy;
+      loading: lazy; /* Ледаче завантаження */
     }
 
     /* ============================ */
@@ -403,8 +400,6 @@
     /* ======================= */
     /*   ДОДАТКОВІ BREAKPOINTS */
     /* ======================= */
-
-    /* Мобільні (до 768px) */
     @media (max-width: 768px) {
       header h1 {
         font-size: 1.8em;
@@ -434,8 +429,6 @@
         margin-top: 30%;
       }
     }
-
-    /* Планшети / середні екрани (769–1199px) */
     @media (min-width: 769px) and (max-width: 1199px) {
       .hero h2 {
         font-size: 2.2em;
@@ -449,13 +442,10 @@
       .service {
         flex: 0 1 calc(50% - 40px); /* 2 елементи в ряд */
       }
-      /* 3 колонки для галереї */
       .gallery {
         grid-template-columns: repeat(3, 1fr);
       }
     }
-
-    /* Великі екрани (від 1200px) */
     @media (min-width: 1200px) {
       .hero {
         height: 60vh;
@@ -469,7 +459,6 @@
       .services {
         gap: 30px;
       }
-      /* 5 картинок в один ряд для галереї */
       .gallery {
         grid-template-columns: repeat(5, 1fr);
         gap: 20px;
@@ -535,7 +524,6 @@
   <section id="gallery">
     <h2>Галерея</h2>
     <div class="gallery">
-      <!-- Ледаче завантаження кожного зображення -->
       <img src="images/img1.jpg" alt="Приклад ремонту 1" loading="lazy" decoding="async">
       <img src="images/img2.jpg" alt="Приклад ремонту 2" loading="lazy" decoding="async">
       <img src="images/img3.jpg" alt="Приклад ремонту 3" loading="lazy" decoding="async">
@@ -559,7 +547,7 @@
     <button onclick="openModal()">Залишити заявку</button>
   </div>
 
-  <!-- Карта Google Maps (з lazy) -->
+  <!-- Карта Google Maps -->
   <section id="map">
     <h2>Ми знаходимось тут</h2>
     <div class="map-container">
@@ -582,22 +570,18 @@
         <p>Email: info@remontconsoles.ua</p>
         <p>Адреса: Одеса, вул. Героїв прикордонників 4</p>
       </div>
-      <!-- Форма -->
-      <form
-  action="https://formspree.io/f/mkgokqav"
-  method="POST"
->
-  <label>
-    Ваш телефон:
-    <input type="telephone" name="telephone">
-  </label>
-  <label>
-    Опишіть звернення:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Відправити</button>
-</form>
+      <!-- Форма (Formspree) -->
+      <form action="https://formspree.io/f/mkgokqav" method="POST">
+        <label>
+          Ваш телефон:
+          <input type="tel" name="telephone" required>
+        </label>
+        <label>
+          Опишіть звернення:
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Відправити</button>
+      </form>
     </div>
   </div>
 
@@ -606,7 +590,7 @@
     <p>&copy; 2025 Ремонт ігрових консолей. Всі права захищені.</p>
   </footer>
 
-  <!-- JavaScript (краще підключити defer або в кінці body) -->
+  <!-- JavaScript -->
   <script>
     const modal = document.getElementById("contactModal");
 
