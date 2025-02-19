@@ -19,14 +19,14 @@
       overflow-x: hidden;
     }
 
-    /* Шапка сайту */
+    /* ============================ */
+    /*          ШАПКА САЙТУ        */
+    /* ============================ */
     header {
       background: #111;
       padding: 20px;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      /* ВИДАЛЕНО position: sticky; */
     }
     header h1 {
       margin-bottom: 10px;
@@ -63,7 +63,9 @@
       transform: scale(1.1);
     }
 
-    /* Анімований банер (Hero) */
+    /* ============================ */
+    /*    Анімований банер (Hero)   */
+    /* ============================ */
     .hero {
       position: relative;
       height: 50vh;
@@ -74,40 +76,32 @@
       overflow: hidden;
       background-size: cover;
       background-position: center;
-      animation: fadeSlideshow 25s infinite;
+      /* Спрощена анімація слайдшоу + вендорні префікси */
+      -webkit-animation: fadeSlideshow 25s infinite ease-in-out;
+              animation: fadeSlideshow 25s infinite ease-in-out;
     }
-    /* Кадри анімації для слайдшоу (приклад) */
+    /* Вендорні префікси + спрощені ключові кадри */
+    @-webkit-keyframes fadeSlideshow {
+      0%   { background-image: url('images/img3.jpg'); }
+      20%  { background-image: url('images/img3.jpg'); }
+      25%  { background-image: url('images/img4.jpg'); }
+      45%  { background-image: url('images/img4.jpg'); }
+      50%  { background-image: url('images/img12.jpg'); }
+      70%  { background-image: url('images/img12.jpg'); }
+      75%  { background-image: url('images/img3.jpg'); }
+      95%  { background-image: url('images/img3.jpg'); }
+      100% { background-image: url('images/img5.jpg'); }
+    }
     @keyframes fadeSlideshow {
-      0% {
-        background-image: url('images/img3.jpg');
-      }
-      20% {
-        background-image: url('images/img3.jpg');
-      }
-      25% {
-        background-image: url('images/img4.jpg');
-      }
-      40% {
-        background-image: url('images/img4.jpg');
-      }
-      40% {
-        background-image: url('images/img12.jpg');
-      }
-      60% {
-        background-image: url('images/img12.jpg');
-      }
-      60% {
-        background-image: url('images/img3.jpg');
-      }
-      80% {
-        background-image: url('images/img3.jpg');
-      }
-      80% {
-        background-image: url('images/img5.jpg');
-      }
-      100% {
-        background-image: url('images/img5.jpg');
-      }
+      0%   { background-image: url('images/img3.jpg'); }
+      20%  { background-image: url('images/img3.jpg'); }
+      25%  { background-image: url('images/img4.jpg'); }
+      45%  { background-image: url('images/img4.jpg'); }
+      50%  { background-image: url('images/img12.jpg'); }
+      70%  { background-image: url('images/img12.jpg'); }
+      75%  { background-image: url('images/img3.jpg'); }
+      95%  { background-image: url('images/img3.jpg'); }
+      100% { background-image: url('images/img5.jpg'); }
     }
 
     /* Напівпрозора підкладка для кращої читабельності тексту */
@@ -128,7 +122,9 @@
       font-size: 2.5em;
       margin-bottom: 15px;
       color: #00ff7f;
-      animation: textGlow 2s infinite alternate;
+      /* Світіння тексту з префіксами */
+      -webkit-animation: textGlow 2s infinite alternate;
+              animation: textGlow 2s infinite alternate;
     }
     .hero p {
       font-size: 1.2em;
@@ -141,23 +137,28 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
+      transition: background 0.3s, -webkit-transform 0.3s;
       transition: background 0.3s, transform 0.3s;
+      transition: background 0.3s, transform 0.3s, -webkit-transform 0.3s;
     }
     .hero a:hover {
       background: #00cc66;
-      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
     }
-    /* Легка анімація "світіння" тексту */
+    /* Анімація "світіння" з вендорними префіксами */
+    @-webkit-keyframes textGlow {
+      0%   { text-shadow: 0 0 5px #00ff7f; }
+      100% { text-shadow: 0 0 20px #00ff7f; }
+    }
     @keyframes textGlow {
-      0% {
-        text-shadow: 0 0 5px #00ff7f;
-      }
-      100% {
-        text-shadow: 0 0 20px #00ff7f;
-      }
+      0%   { text-shadow: 0 0 5px #00ff7f; }
+      100% { text-shadow: 0 0 20px #00ff7f; }
     }
 
-    /* Секції з відступами */
+    /* ============================ */
+    /*        Секції з відступами   */
+    /* ============================ */
     section {
       padding: 40px 20px;
     }
@@ -169,7 +170,9 @@
       text-transform: uppercase;
     }
 
-    /* Послуги */
+    /* ============================ */
+    /*          Послуги            */
+    /* ============================ */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -185,10 +188,13 @@
       flex: 0 1 300px;
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: -webkit-transform 0.3s;
       transition: transform 0.3s;
+      transition: transform 0.3s, -webkit-transform 0.3s;
     }
     .service:hover {
-      transform: translateY(-5px);
+      -webkit-transform: translateY(-5px);
+              transform: translateY(-5px);
     }
     .service h3 {
       margin-bottom: 15px;
@@ -206,7 +212,9 @@
       margin-bottom: 10px;
     }
 
-    /* Галерея */
+    /* ============================ */
+    /*          Галерея            */
+    /* ============================ */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -218,13 +226,18 @@
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: -webkit-transform 0.3s;
       transition: transform 0.3s;
+      transition: transform 0.3s, -webkit-transform 0.3s;
     }
     .gallery img:hover {
-      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
     }
 
-    /* Про нас */
+    /* ============================ */
+    /*          Про нас            */
+    /* ============================ */
     .about-text {
       max-width: 800px;
       margin: 0 auto;
@@ -232,7 +245,9 @@
       line-height: 1.6;
     }
 
-    /* Футер */
+    /* ============================ */
+    /*           Футер             */
+    /* ============================ */
     footer {
       background: #111;
       text-align: center;
@@ -244,9 +259,9 @@
       margin: 5px 0;
     }
 
-    /* ======================= */
-    /*        МОДАЛЬНЕ ВІКНО  */
-    /* ======================= */
+    /* ============================ */
+    /*       МОДАЛЬНЕ ВІКНО        */
+    /* ============================ */
     .modal {
       display: none; /* приховане за замовчуванням */
       position: fixed; 
@@ -266,12 +281,17 @@
       border-radius: 8px;
       position: relative;
       box-shadow: 0 0 15px rgba(0,0,0,0.8);
-      animation: modalFadeIn 0.5s;
+      /* Вендорні префікси для анімації появи */
+      -webkit-animation: modalFadeIn 0.5s;
+              animation: modalFadeIn 0.5s;
     }
-    /* Анімація появи модального вікна */
+    @-webkit-keyframes modalFadeIn {
+      from { opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+      to   { opacity: 1; -webkit-transform: translateY(0);      transform: translateY(0);      }
+    }
     @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+      to   { opacity: 1; -webkit-transform: translateY(0);      transform: translateY(0);      }
     }
 
     /* Кнопка "закрити" (хрестик) */
@@ -320,11 +340,14 @@
       border-radius: 5px;
       font-size: 1em;
       font-weight: bold;
+      transition: background 0.3s, -webkit-transform 0.3s;
       transition: background 0.3s, transform 0.3s;
+      transition: background 0.3s, transform 0.3s, -webkit-transform 0.3s;
     }
     .modal-content form button:hover {
       background: #00cc66;
-      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
     }
 
     /* ======================= */
@@ -405,7 +428,7 @@
 </head>
 <body>
 
-  <!-- Шапка сайту -->
+  <!-- Шапка сайту (прокручується разом зі сторінкою) -->
   <header>
     <h1>Ремонт консолей</h1>
     <nav>
