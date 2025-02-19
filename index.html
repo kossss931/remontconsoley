@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/remontconsoley/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/remontconsoley/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/remontconsoley/favicon-16x16.png">
-<link rel="manifest" href="/remontconsoley/site.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="/remontconsoley/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/remontconsoley/favicon-16x16.png">
+  <link rel="manifest" href="/remontconsoley/site.webmanifest">
+
   <!-- SEO-метатеги -->
   <meta name="description" content="Професійний ремонт ігрових консолей (PlayStation, Xbox, Nintendo) в Одесі. Швидко, якісно, з гарантією." />
   <meta name="keywords" content="ремонт консолей,привод Blu-ray ремонт ,заміна жорсткого диска (HDD/SSD) ,ремонт Nintendo Switch, чистка PS5 Одеса ,ремонт PlayStation,заміна HDMI, ремонт Xbox, ремонт Joy-Con, ремонт Nintendo, Одеса,ремонт геймпада PS4,ремонт геймпада, чистка, заміна термопасти ps4, ps5, чистка ps4 одесса, замена термопасты одесса, ремонт ноутбуков одесса, компьютерный мастер одесса" />
@@ -39,7 +40,6 @@
       background: linear-gradient(135deg, #1f1f1f 0%, #000000 100%);
       color: #fff;
       overflow-x: hidden;
-      /* Плавна прокрутка (не впливає на продуктивність, але виглядає приємніше) */
       scroll-behavior: smooth;
     }
 
@@ -56,7 +56,7 @@
       font-size: 2em;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #00ff7f; /* Яскраво-зелений */
+      color: #00ff7f;
     }
     header nav a {
       color: #fff;
@@ -68,8 +68,6 @@
     header nav a:hover {
       color: #00ff7f;
     }
-
-    /* Блок з іконками соцмереж */
     .social {
       margin-top: 10px;
     }
@@ -99,14 +97,11 @@
       overflow: hidden;
       background-size: cover;
       background-position: center;
-      /* Анімація слайдшоу */
       -webkit-animation: fadeSlideshow 25s infinite ease-in-out;
               animation: fadeSlideshow 25s infinite ease-in-out;
-      /* Покращення рендеру */
       will-change: background-image;
       transform: translateZ(0);
     }
-    /* Ключові кадри з 5 різними зображеннями */
     @-webkit-keyframes fadeSlideshow {
       0%, 20%   { background-image: url('images/Ремонт PS4 в Одесі.jpg'); }
       20%, 40%  { background-image: url('images/ремонт геймпадів.jpg'); }
@@ -121,7 +116,6 @@
       60%, 80%  { background-image: url('images/ремонт консолей Одеса.jpg'); }
       80%, 100% { background-image: url('images/ремонт Joy-Con.jpg'); }
     }
-
     .hero::before {
       content: "";
       position: absolute;
@@ -159,8 +153,6 @@
       background: #00cc66;
       transform: scale(1.05);
     }
-
-    /* Світіння тексту */
     @-webkit-keyframes textGlow {
       0%   { text-shadow: 0 0 5px #00ff7f; }
       100% { text-shadow: 0 0 20px #00ff7f; }
@@ -233,7 +225,7 @@
       gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
-      grid-template-columns: repeat(2, 1fr); /* Базові налаштування для мобільних */
+      grid-template-columns: repeat(2, 1fr);
     }
     .gallery img {
       width: 100%;
@@ -241,7 +233,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       transition: transform 0.3s;
       will-change: transform;
-      /* Ледаче завантаження */
       loading: lazy;
       decoding: async;
     }
@@ -250,13 +241,43 @@
     }
 
     /* ============================ */
-    /*          Про нас            */
+    /*       ПРО НАС (СТРУКТУРА)   */
     /* ============================ */
-    .about-text {
+    .about-section {
+      background: #222; /* Контрастний фон */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .about-section h2 {
+      color: #00ff7f;
+      margin-bottom: 20px;
+    }
+    .about-content {
       max-width: 800px;
       margin: 0 auto;
-      text-align: center;
       line-height: 1.6;
+    }
+    .about-content p {
+      margin-bottom: 20px;
+    }
+    .about-features {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    .about-features li {
+      background: #333;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    .about-features li strong {
+      color: #00ff7f;
     }
 
     /* ============================ */
@@ -306,7 +327,7 @@
       width: 100%;
       height: 100%;
       border: 0;
-      loading: lazy; /* Ледаче завантаження */
+      loading: lazy;
     }
 
     /* ============================ */
@@ -327,15 +348,15 @@
     /*       МОДАЛЬНЕ ВІКНО        */
     /* ============================ */
     .modal {
-      display: none; /* приховане за замовчуванням */
+      display: none;
       position: fixed; 
-      z-index: 999; /* вище за інші елементи */
+      z-index: 999;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto; 
-      background-color: rgba(0,0,0,0.7); /* напівпрозорий фон */
+      background-color: rgba(0,0,0,0.7);
     }
     .modal-content {
       background: #222;
@@ -356,7 +377,6 @@
       from { opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px); }
       to   { opacity: 1; -webkit-transform: translateY(0);      transform: translateY(0);      }
     }
-
     .close-btn {
       position: absolute;
       top: 10px;
@@ -406,74 +426,6 @@
       background: #00cc66;
       transform: scale(1.05);
     }
-
-    /* ======================= */
-    /*   ДОДАТКОВІ BREAKPOINTS */
-    /* ======================= */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8em;
-      }
-      header nav a {
-        display: inline-block;
-        margin: 5px 5px;
-      }
-      .hero h2 {
-        font-size: 2em;
-      }
-      .hero p {
-        font-size: 1em;
-      }
-      .hero a {
-        padding: 8px 18px;
-      }
-      .services {
-        flex-direction: column;
-        align-items: center;
-      }
-      .service {
-        max-width: 90%;
-      }
-      .modal-content {
-        width: 90%;
-        margin-top: 30%;
-      }
-    }
-    @media (min-width: 769px) and (max-width: 1199px) {
-      .hero h2 {
-        font-size: 2.2em;
-      }
-      .hero p {
-        font-size: 1.1em;
-      }
-      .services {
-        flex-wrap: wrap;
-      }
-      .service {
-        flex: 0 1 calc(50% - 40px); /* 2 елементи в ряд */
-      }
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 1200px) {
-      .hero {
-        height: 60vh;
-      }
-      .hero h2 {
-        font-size: 3em;
-      }
-      .hero p {
-        font-size: 1.3em;
-      }
-      .services {
-        gap: 30px;
-      }
-      .gallery {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -485,10 +437,8 @@
       <a href="#services">Послуги</a>
       <a href="#gallery">Галерея</a>
       <a href="#about">Про нас</a>
-      <!-- Кнопка, що відкриває модальне вікно -->
       <a href="javascript:void(0)" onclick="openModal()">Контакти</a>
     </nav>
-    <!-- Блок з іконками соцмереж -->
     <div class="social">
       <a href="https://www.instagram.com/notebooks_playstation/" target="_blank">
         <img src="images/заміна термопасти консоль.png" alt="заміна термопасти консоль">
@@ -542,16 +492,20 @@
     </div>
   </section>
 
-  <!-- Про нас -->
-  <section id="about">
+  <!-- Про нас (оновлений блок) -->
+  <section id="about" class="about-section">
     <h2>Про нас</h2>
-    <p class="about-text">
-      Я – майстер із багаторічним досвідом, що спеціалізується на ремонті ігрових консолей - (PlayStation,
-      Xbox, Nintendo), а також ПК і ноутбуків. Приймаю техніку до себе додому за адресою в Одесі або
-      можу виїхати до клієнта для чистки, збірки, заміни комплектуючих чи встановлення операційної системи.
-      За потреби забираю техніку на ремонт і повертаю після завершення робіт.
-      Гарантую швидкість, якість і професійний підхід до кожного замовлення.
-    </p>
+    <div class="about-content">
+      <p>
+        Я – майстер із багаторічним досвідом, що спеціалізується на ремонті ігрових консолей (PlayStation, Xbox, Nintendo), а також ПК і ноутбуків. Приймаю техніку до себе додому за адресою в Одесі або можу виїхати до клієнта для чистки, збірки, заміни комплектуючих чи встановлення операційної системи. За потреби забираю техніку на ремонт і повертаю після завершення робіт.
+      </p>
+      <ul class="about-features">
+        <li><strong>Багаторічний досвід:</strong> виконую ремонти різної складності швидко та професійно.</li>
+        <li><strong>Зручне обслуговування:</strong> виїзд до клієнта або прийом техніки вдома.</li>
+        <li><strong>Комплексні послуги:</strong> чистка, збірка, заміна комплектуючих, встановлення ОС.</li>
+        <li><strong>Гарантія якості:</strong> використання перевірених деталей та відповідальний підхід до кожного замовлення.</li>
+      </ul>
+    </div>
   </section>
 
   <!-- Кнопка внизу сторінки -->
@@ -576,13 +530,11 @@
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <h2>Зв'яжіться з нами</h2>
-      <!-- Контактна інформація -->
       <div class="contact-info">
         <p>Телефон: +38 (099) 308-55-72</p>
         <p>Email: info@remontconsoles.ua</p>
         <p>Адреса: Одеса, вул. Героїв прикордонників 4</p>
       </div>
-      <!-- Форма (Formspree) -->
       <form action="https://formspree.io/f/mkgokqav" method="POST">
         <label>
           Ваш телефон:
