@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ремонт ігрових консолей</title>
+  <style>
+    /* Скидання базових стилів */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1f1f1f 0%, #000000 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Шапка сайту */
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #00ff7f; /* Яскраво-зелений */
+    }
+    header nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: #00ff7f;
+    }
+
+    /* Блок з іконками соцмереж */
+    .social {
+      margin-top: 10px;
+    }
+    .social a {
+      display: inline-block;
+      margin: 0 5px;
+    }
+    .social img {
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s;
+    }
+    .social img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Анімований банер (Hero) */
+    .hero {
+      position: relative;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      animation: fadeSlideshow 25s infinite;
+    }
+    /* Кадри анімації для слайдшоу (приклад) */
+    @keyframes fadeSlideshow {
+      0% {
+        background-image: url('images/img3.jpg');
+      }
+      20% {
+        background-image: url('images/img3.jpg');
+      }
+      25% {
+        background-image: url('images/img4.jpg');
+      }
+      40% {
+        background-image: url('images/img4.jpg');
+      }
+      40% {
+        background-image: url('images/img12.jpg');
+      }
+      60% {
+        background-image: url('images/img12.jpg');
+      }
+      60% {
+        background-image: url('images/img3.jpg');
+      }
+      80% {
+        background-image: url('images/img3.jpg');
+      }
+      80% {
+        background-image: url('images/img5.jpg');
+      }
+      100% {
+        background-image: url('images/img5.jpg');
+      }
+    }
+
+    /* Напівпрозора підкладка для кращої читабельності тексту */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #00ff7f;
+      animation: textGlow 2s infinite alternate;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .hero a {
+      background: #00ff7f;
+      color: #000;
+      padding: 10px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .hero a:hover {
+      background: #00cc66;
+      transform: scale(1.05);
+    }
+    /* Легка анімація "світіння" тексту */
+    @keyframes textGlow {
+      0% {
+        text-shadow: 0 0 5px #00ff7f;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ff7f;
+      }
+    }
+
+    /* Секції з відступами */
+    section {
+      padding: 40px 20px;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #00ff7f;
+      text-transform: uppercase;
+    }
+
+    /* Послуги */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .service {
+      background: #222;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+    .service:hover {
+      transform: translateY(-5px);
+    }
+    .service h3 {
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      color: #fff;
+    }
+    .service p {
+      font-size: 1em;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    .service img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* Галерея */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Про нас */
+    .about-text {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* Футер */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #fff;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* ======================= */
+    /*        МОДАЛЬНЕ ВІКНО  */
+    /* ======================= */
+    .modal {
+      display: none; /* приховане за замовчуванням */
+      position: fixed; 
+      z-index: 999; /* вище за інші елементи */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.7); /* напівпрозорий фон */
+    }
+    .modal-content {
+      background: #222;
+      margin: 10% auto; 
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      animation: modalFadeIn 0.5s;
+    }
+    /* Анімація появи модального вікна */
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Кнопка "закрити" (хрестик) */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #fff;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: #00ff7f;
+    }
+
+    /* Стилі для контактної інформації та форми всередині модалки */
+    .modal-content h2 {
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      text-align: center;
+      color: #00ff7f;
+      text-transform: uppercase;
+    }
+    .contact-info {
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .modal-content form input,
+    .modal-content form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #333;
+      color: #fff;
+      font-size: 1em;
+    }
+    .modal-content form button {
+      background: #00ff7f;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1em;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .modal-content form button:hover {
+      background: #00cc66;
+      transform: scale(1.05);
+    }
+
+    /* Адаптивність */
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service {
+        max-width: 90%;
+      }
+      .hero h2 {
+        font-size: 2em;
+      }
+      .modal-content {
+        width: 90%;
+        margin-top: 30%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка сайту -->
+  <header>
+    <h1>Ремонт консолей</h1>
+    <nav>
+      <a href="#services">Послуги</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#about">Про нас</a>
+      <!-- Кнопка, що відкриває модальне вікно -->
+      <a href="javascript:void(0)" onclick="openModal()">Контакти</a>
+    </nav>
+    <!-- Блок з іконками соцмереж -->
+    <div class="social">
+      <a href="https://www.instagram.com/notebooks_playstation/" target="_blank">
+        <img src="images/instagram-icon.png" alt="Instagram">
+      </a>
+      <a href="https://t.me/PS4obslugabot" target="_blank">
+        <img src="images/telegram-icon.png" alt="Telegram">
+      </a>
+    </div>
+  </header>
+
+  <!-- Анімований банер Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Професійний ремонт ігрових консолей</h2>
+      <p>Швидко, якісно та з гарантією!</p>
+      <!-- Кнопка знову ж таки може відкривати форму -->
+      <a href="javascript:void(0)" onclick="openModal()">Залишити заявку</a>
+    </div>
+  </section>
+
+  <!-- Послуги -->
+  <section id="services">
+    <h2>Наші послуги</h2>
+    <div class="services">
+      <div class="service">
+        <img src="images/img9.jpg" alt="Ремонт PlayStation">
+        <h3>Ремонт PlayStation</h3>
+        <p>Виконуємо чистку, заміну термопасти 700грн — Ремонт геймпадів та інших компонентів PlayStation від 250грн.</p>
+      </div>
+      <div class="service">
+        <img src="images/img11.jpg" alt="Ремонт Xbox">
+        <h3>Ремонт Xbox</h3>
+        <p>Виконуємо чистку, заміну термопасти 900грн — Ремонт геймпадів та інших компонентів від 250грн для Xbox.</p>
+      </div>
+      <div class="service">
+        <img src="images/img10.jpg" alt="Ремонт Nintendo">
+        <h3>Ремонт Nintendo</h3>
+        <p>Якісний ремонт консолей Nintendo, включаючи заміну елементів живлення та дисплеїв від 400грн.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section id="gallery">
+    <h2>Галерея</h2>
+    <div class="gallery">
+      <img src="images/img1.jpg" alt="Приклад ремонту консолі 1">
+      <img src="images/img2.jpg" alt="Приклад ремонту консолі 2">
+      <img src="images/img8.jpg" alt="Приклад ремонту консолі 3">
+      <img src="images/img4.jpg" alt="Приклад ремонту консолі 4">
+      <img src="images/img5.jpg" alt="Приклад ремонту консолі 5">
+    </div>
+  </section>
+
+  <!-- Про нас -->
+  <section id="about">
+    <h2>Про нас</h2>
+    <p class="about-text">
+      Ми – команда досвідчених фахівців, які вже понад 5 років спеціалізуються на ремонті ігрових консолей. 
+      Наші клієнти цінують нас за професіоналізм, оперативність та індивідуальний підхід. 
+      Ми використовуємо тільки якісні запчастини та даємо гарантію на всі види робіт.
+    </p>
+  </section>
+
+  <!-- Модальне вікно (Контактна форма + Контакти) -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Зв'яжіться з нами</h2>
+      <!-- Контактна інформація -->
+      <div class="contact-info">
+        <p>Телефон: +38 (099) 308-55-72</p>
+        <p>Email: info@remontconsoles.ua</p>
+        <p>Адреса: Одеса, вул. Героїв прикордонників 4</p>
+      </div>
+      <!-- Форма -->
+      <form action="https://formspree.io/f/ВАШ_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Ваше ім'я" required />
+        <input type="tel" name="phone" placeholder="Ваш номер телефону" required />
+        <textarea name="message" placeholder="Ваше повідомлення" rows="5"></textarea>
+        <button type="submit">Надіслати</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer>
+    <p>&copy; 2025 Ремонт ігрових консолей. Всі права захищені.</p>
+  </footer>
+
+  <!-- JavaScript для відкриття/закриття модального вікна -->
+  <script>
+    const modal = document.getElementById("contactModal");
+
+    // Функція відкриття модального вікна
+    function openModal() {
+      modal.style.display = "block";
+    }
+
+    // Функція закриття модального вікна
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // Закриття при кліку поза формою
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
