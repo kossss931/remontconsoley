@@ -140,7 +140,6 @@
       font-size: 1.2em;
       margin-bottom: 20px;
     }
-    /* Збільшуємо кнопку на ~30% від оригіналу (було 10px 25px, стало ~13px 33px) */
     .hero a {
       background: #00ff7f;
       color: #000;
@@ -285,13 +284,11 @@
     /*      Кнопка (фіксована)     */
     /* ============================ */
     .bottom-cta {
-      /* Прибрано звичайний потік */
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 999; /* над іншими елементами */
+      z-index: 999;
     }
-    /* Збільшена на 30% від початкових 15px 30px => ~19.5px 39px, округлимо */
     .bottom-cta button {
       background: #00ff7f;
       color: #000;
@@ -313,7 +310,7 @@
     /* ============================ */
     .reviews-section {
       max-width: 700px;
-      margin: 25px auto; /* зменшили відступи ~20% */
+      margin: 25px auto;
       text-align: center;
       position: relative;
       padding: 0 10px;
@@ -342,7 +339,37 @@
     .slide img {
       width: 100%;
       display: block;
-      cursor: pointer; /* щоб можна було натискати на фото */
+      cursor: pointer;
+    }
+
+    /* ============================ */
+    /*    Блок з відео (YouTube)   */
+    /* ============================ */
+    .video-section {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+    }
+    .video-section h2 {
+      color: #00ff7f;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     /* ============================ */
@@ -558,53 +585,41 @@
     </div>
   </section>
 
-  <!-- Плаваюча кнопка (замість нижньої) -->
+  <!-- Плаваюча кнопка -->
   <div class="bottom-cta">
     <button onclick="openModal()">Залишити заявку</button>
   </div>
 
-  <!-- Новий блок із відгуками (автослайд + натискання на фото) -->
+  <!-- Слайдер відгуків -->
   <section class="reviews-section" id="reviews">
     <h2>Відгуки клієнтів</h2>
     <div class="slider-container">
       <div class="slider">
-        <!-- Слайд 1 -->
         <div class="slide">
-          <img src="images/img1.jpeg" alt="Відгук 1">
+          <img src="images/review1.jpg" alt="Відгук 1">
         </div>
-        <!-- Слайд 2 -->
         <div class="slide">
-          <img src="images/img2.jpeg" alt="Відгук 2">
+          <img src="images/review2.jpg" alt="Відгук 2">
         </div>
-        <!-- Слайд 3 -->
         <div class="slide">
-          <img src="images/img3.jpeg" alt="Відгук 3">
-        </div>
-        <!-- Слайд 4 -->
-        <div class="slide">
-          <img src="images/img4.jpeg" alt="Відгук 2">
-        </div>
-        <!-- Слайд 5 -->
-        <div class="slide">
-          <img src="images/img5.jpeg" alt="Відгук 2">
-        </div>
-        <!-- Слайд 6 -->
-        <div class="slide">
-          <img src="images/img6.jpeg" alt="Відгук 2">
-        </div>
-        <!-- Слайд 7 -->
-        <div class="slide">
-          <img src="images/img7.jpeg" alt="Відгук 2">
-        </div>
-        <!-- Слайд 8 -->
-        <div class="slide">
-          <img src="images/img8.jpeg" alt="Відгук 2">
-        </div>
-        <!-- Слайд 9 -->
-        <div class="slide">
-          <img src="images/img9.jpeg" alt="Відгук 2">
+          <img src="images/review3.jpg" alt="Відгук 3">
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Новий блок з відео моєї роботи -->
+  <section class="video-section" id="my-video">
+    <h2>Відео моєї роботи</h2>
+    <div class="video-container">
+      <!-- Вбудовуємо YouTube Shorts -->
+      <iframe 
+        src="https://www.youtube.com/embed/naoEDKpprZY"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
     </div>
   </section>
 
@@ -671,27 +686,18 @@
     const slides = document.querySelectorAll('.slide');
     let currentIndex = 0;
 
-    // Функція показу поточного слайду
     function showSlide(index) {
       slider.style.transform = `translateX(${-index * 100}%)`;
     }
-
-    // Перехід до наступного слайду
     function nextSlide() {
       currentIndex = (currentIndex + 1) % slides.length;
       showSlide(currentIndex);
     }
-
-    // Автопрокрутка (кожні 3 секунди)
     let autoSlide = setInterval(nextSlide, 3000);
-
-    // При кліку на слайд – перехід до наступного
     slides.forEach(slide => {
       slide.addEventListener('click', () => {
-        // Скидаємо автопрокрутку, щоб не було конфлікту
         clearInterval(autoSlide);
         nextSlide();
-        // Заново запускаємо автопрокрутку
         autoSlide = setInterval(nextSlide, 3000);
       });
     });
