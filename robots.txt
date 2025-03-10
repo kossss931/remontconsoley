@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kossss931.github.io/remontconsoley/
+Sitemap: https://kossss931.github.io/remontconsoley/sitemap.xml
